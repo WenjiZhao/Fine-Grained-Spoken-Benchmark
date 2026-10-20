@@ -1,0 +1,20 @@
+{
+  "search": {
+    "Boston|2|1800": [
+      {
+        "id": "APT-2201",
+        "rent": 1750,
+        "bedrooms": 2,
+        "pets_allowed": true,
+        "address": "44 Elm St"
+      },
+      {
+        "id": "APT-2202",
+        "rent": 1690,
+        "bedrooms": 2,
+        "pets_allowed": false,
+        "address": "9 Harbor Ave"
+      }
+    ]
+  }
+}

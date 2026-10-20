@@ -1,0 +1,192 @@
+[
+  {
+    "id": "resolvable_implicit_argument_0001",
+    "task_type": "resolvable_implicit_argument",
+    "available_tools": [
+      {
+        "name": "get_weather"
+      },
+      {
+        "name": "get_current_location"
+      }
+    ],
+    "transcript": "What's the weather like where I am right now? I'm heading out soon and just want a quick check before I leave.",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "get_current_location",
+          "arguments": {}
+        },
+        {
+          "tool": "get_weather",
+          "arguments": {
+            "location": "<result:0.city>"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [
+        "implicit current location"
+      ],
+      "value_mentions": {
+        "1.location": "where I am right now"
+      },
+      "normalization": {
+        "1.location": "Resolve implicit location via get_current_location; use returned city field."
+      },
+      "implicit_arguments": [
+        "1.location"
+      ],
+      "raw_values": {
+        "1.location": "where I am right now"
+      },
+      "resolved_values": {
+        "1.location": "Boston"
+      },
+      "resolution_steps": [
+        "Call get_current_location to resolve the user's current city.",
+        "Bind get_weather.location to <result:0.city>."
+      ],
+      "reference_datetime": "2026-09-10",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 5,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_resolvable_implicit_argument_d215992ad12c",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0001.wav"
+      ],
+      "domain": "weather",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_resolvable_implicit_argument_d215992ad12c",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  },
+  {
+    "id": "resolvable_implicit_argument_0002",
+    "task_type": "resolvable_implicit_argument",
+    "available_tools": [
+      {
+        "name": "find_restaurants"
+      },
+      {
+        "name": "get_current_location"
+      }
+    ],
+    "transcript": "Can you find sushi restaurants near me that I could try for dinner later? I don't need anything fancy, just nearby options.",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "get_current_location",
+          "arguments": {}
+        },
+        {
+          "tool": "find_restaurants",
+          "arguments": {
+            "cuisine": "sushi",
+            "location": "<result:0.city>"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [
+        "implicit current location"
+      ],
+      "value_mentions": {
+        "1.cuisine": "sushi",
+        "1.location": "near me"
+      },
+      "normalization": {
+        "1.location": "Resolve 'near me' via get_current_location; use returned city field."
+      },
+      "implicit_arguments": [
+        "1.location"
+      ],
+      "raw_values": {
+        "1.location": "near me"
+      },
+      "resolved_values": {
+        "1.location": "Boston"
+      },
+      "resolution_steps": [
+        "Call get_current_location to determine the user's current city.",
+        "Bind find_restaurants.location to <result:0.city>."
+      ],
+      "reference_datetime": "2026-09-10",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 5,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_resolvable_implicit_argument_bca33e39df22",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0002.wav"
+      ],
+      "domain": "restaurants",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_resolvable_implicit_argument_bca33e39df22",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/resolvable_implicit_argument_audio/resolvable_implicit_argument_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  }
+]

@@ -1,0 +1,144 @@
+[
+  {
+    "id": "missing_argument_0001",
+    "task_type": "missing_argument",
+    "available_tools": [
+      {
+        "name": "location_get_coordinates"
+      }
+    ],
+    "transcript": "Can you get the coordinates for the office on Grant Street? I need to pin it in a map, but I don't have the full street address in front of me.",
+    "gold": {
+      "action": "clarify",
+      "clarifying_question": "What is the full address for the office on Grant Street?"
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [
+        "missing required address"
+      ],
+      "value_mentions": {},
+      "normalization": {},
+      "target_tool": "location_get_coordinates",
+      "provided_arguments": {},
+      "missing_arguments": [
+        "address"
+      ],
+      "unresolvable_reason": "The user refers to a place descriptively as 'the office on Grant Street' but does not provide a full address string.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_missing_argument_c206e8b490c3",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/missing_argument_audio/missing_argument_0001.wav"
+      ],
+      "domain": "maps",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_missing_argument_c206e8b490c3",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/missing_argument_audio/missing_argument_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/missing_argument_audio/missing_argument_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  },
+  {
+    "id": "missing_argument_0002",
+    "task_type": "missing_argument",
+    "available_tools": [
+      {
+        "name": "add_to_cart"
+      }
+    ],
+    "transcript": "Please add three of those wireless headphones to my cart. I was just looking at them a minute ago, but I never wrote down the item code.",
+    "gold": {
+      "action": "clarify",
+      "clarifying_question": "What product ID should I add to your cart for the wireless headphones?"
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [
+        "missing required product_id"
+      ],
+      "value_mentions": {
+        "0.quantity": "three"
+      },
+      "normalization": {
+        "0.quantity": "three -> 3"
+      },
+      "target_tool": "add_to_cart",
+      "provided_arguments": {
+        "quantity": 3
+      },
+      "missing_arguments": [
+        "product_id"
+      ],
+      "unresolvable_reason": "The user specifies quantity and a product description but not the required product_id.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_missing_argument_973a8d59524d",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/missing_argument_audio/missing_argument_0002.wav"
+      ],
+      "domain": "shopping",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_missing_argument_973a8d59524d",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/missing_argument_audio/missing_argument_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/missing_argument_audio/missing_argument_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  }
+]

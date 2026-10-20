@@ -1,0 +1,6 @@
+# A pure API client -- no local model weights, no torch. Talks to Amazon Bedrock's
+# bidirectional stream API. Needs Python >= 3.12 (aws_sdk_bedrock_runtime).
+aws_sdk_bedrock_runtime
+awscrt
+numpy
+scipy

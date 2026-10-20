@@ -1,0 +1,214 @@
+[
+  {
+    "id": "tool_selection_hard_negative_0001",
+    "task_type": "tool_selection_hard_negative",
+    "available_tools": [
+      {
+        "name": "search_apartments"
+      },
+      {
+        "name": "hotels_2_search_house"
+      },
+      {
+        "name": "hotels_4_search_hotel"
+      },
+      {
+        "name": "get_weather"
+      },
+      {
+        "name": "track_order"
+      }
+    ],
+    "transcript": "I'm looking for a two-bedroom apartment to rent in Boston for up to 1800 a month, and I need it to allow pets. I'm not after a hotel or a vacation house, just a regular apartment listing.",
+    "gold": {
+      "action": "call",
+      "tool": "search_apartments",
+      "arguments": {
+        "city": "Boston",
+        "bedrooms": 2,
+        "max_price": 1800,
+        "pets_allowed": true
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [
+        "tool disambiguation via rental type"
+      ],
+      "value_mentions": {
+        "0.city": "Boston",
+        "0.bedrooms": "two-bedroom",
+        "0.max_price": "1800",
+        "0.pets_allowed": "allow pets"
+      },
+      "normalization": {
+        "0.bedrooms": "two-bedroom -> 2",
+        "0.max_price": "1800 a month -> 1800",
+        "0.pets_allowed": "allow pets -> true"
+      },
+      "target_tool": "search_apartments",
+      "hard_negative_tools": [
+        "hotels_2_search_house",
+        "hotels_4_search_hotel"
+      ],
+      "contrastive_cues": [
+        "apartment",
+        "to rent",
+        "two-bedroom",
+        "a month",
+        "not after a hotel or a vacation house"
+      ],
+      "confusability_rationale": "All exposed housing tools involve places to stay or live, but the user explicitly wants a regular apartment rental with bedroom count, monthly budget, and pet allowance, which fits search_apartments rather than a vacation house or hotel search.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 4,
+          "gold_correctness": 5,
+          "overall_quality": 4,
+          "diagnostic_support": 4
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_tool_selection_hard_negative_5d54e60f3ae6",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0001.wav"
+      ],
+      "domain": "housing",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_tool_selection_hard_negative_5d54e60f3ae6",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  },
+  {
+    "id": "tool_selection_hard_negative_0002",
+    "task_type": "tool_selection_hard_negative",
+    "available_tools": [
+      {
+        "name": "homes_2_find_home_by_area"
+      },
+      {
+        "name": "hotels_2_search_house"
+      },
+      {
+        "name": "search_apartments"
+      },
+      {
+        "name": "book_appointment"
+      },
+      {
+        "name": "get_card_benefits"
+      }
+    ],
+    "transcript": "Umm, I'm trying to see homes for sale in Brookline, up to 950000, ideally three bedrooms and a townhouse if there are any. I don't want rentals or a short-term stay, this is for buying.",
+    "gold": {
+      "action": "call",
+      "tool": "homes_2_find_home_by_area",
+      "arguments": {
+        "area": "Brookline",
+        "max_price": 950000,
+        "bedrooms": 3,
+        "property_type": "townhouse"
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "filler",
+          "text": "Umm,",
+          "start_char": 0,
+          "end_char": 4
+        }
+      ],
+      "phenomenon_targets": [
+        "filler",
+        "tool disambiguation via purchase intent"
+      ],
+      "value_mentions": {
+        "0.area": "Brookline",
+        "0.max_price": "950000",
+        "0.bedrooms": "three bedrooms",
+        "0.property_type": "townhouse"
+      },
+      "normalization": {
+        "0.max_price": "950000 -> 950000",
+        "0.bedrooms": "three bedrooms -> 3"
+      },
+      "target_tool": "homes_2_find_home_by_area",
+      "hard_negative_tools": [
+        "hotels_2_search_house",
+        "search_apartments"
+      ],
+      "contrastive_cues": [
+        "homes for sale",
+        "for buying",
+        "don't want rentals",
+        "short-term stay"
+      ],
+      "confusability_rationale": "The housing tools are all plausible from the area and price request, but explicit purchase language disambiguates toward homes-for-sale rather than rental housing or travel lodging.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 4,
+          "gold_correctness": 5,
+          "overall_quality": 4,
+          "diagnostic_support": 4
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_tool_selection_hard_negative_be0345261342",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0002.wav"
+      ],
+      "domain": "real estate",
+      "difficulty": null,
+      "disfluency_category": [
+        "FILLER"
+      ],
+      "title": null
+    },
+    "source_id": "syn_tool_selection_hard_negative_be0345261342",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/tool_selection_hard_negative_audio/tool_selection_hard_negative_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  }
+]

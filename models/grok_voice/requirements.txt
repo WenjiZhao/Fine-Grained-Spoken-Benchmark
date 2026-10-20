@@ -1,0 +1,6 @@
+# A pure API client -- no local model weights, no torch. Talks to xAI Grok Voice Agent
+# API directly over the raw websocket event protocol (see adapter.py's module
+# docstring for why not an SDK client).
+websockets>=13.0
+numpy
+scipy

@@ -1,0 +1,19 @@
+# VoxMind adapter (half-duplex, in-process transformers). Everything it imports is
+# either vendored in vendor/ (no weights) or one of these PyPI packages.
+# Pinned to the Spartan venv the published results were produced with (Python 3.12, CUDA 12.8).
+# torchcodec needs FFmpeg shared libraries on the system (e.g. `module load FFmpeg` on Spartan).
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.8.0
+torchaudio==2.8.0
+torchcodec==0.7.0
+transformers==4.49.0
+librosa==0.11.0
+numpy==2.1.2
+numba==0.62.1
+soundfile==0.13.1
+scipy==1.15.3
+safetensors==0.6.2
+tokenizers==0.21.4
+huggingface-hub==0.36.0
+accelerate==1.11.0

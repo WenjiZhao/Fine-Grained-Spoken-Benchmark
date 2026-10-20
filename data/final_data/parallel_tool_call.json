@@ -1,0 +1,191 @@
+[
+  {
+    "id": "parallel_tool_call_0001",
+    "task_type": "parallel_tool_call",
+    "available_tools": [
+      {
+        "name": "calculate_commute"
+      },
+      {
+        "name": "find_provider"
+      }
+    ],
+    "transcript": "Please calculate the driving commute from 123 Main Street to downtown office, and find a plumber in Queens. Those are unrelated, I just need both answers.",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "calculate_commute",
+          "arguments": {
+            "origin_address": "123 Main Street",
+            "destination_address": "downtown office",
+            "mode": "driving"
+          }
+        },
+        {
+          "tool": "find_provider",
+          "arguments": {
+            "service_type": "plumber",
+            "location": "Queens"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [],
+      "value_mentions": {
+        "0.origin_address": "123 Main Street",
+        "0.destination_address": "downtown office",
+        "0.mode": "driving",
+        "1.service_type": "plumber",
+        "1.location": "Queens"
+      },
+      "normalization": {
+        "0.origin_address": "copy exact surface form",
+        "0.destination_address": "copy exact surface form",
+        "0.mode": "copy exact surface form",
+        "1.service_type": "copy exact surface form",
+        "1.location": "copy exact surface form"
+      },
+      "call_pattern": "two independent tasks with explicit user note of unrelatedness",
+      "dependency_edges": [],
+      "independence_rationale": "The commute calculation and provider lookup are in separate domains and have no information flow between them.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 4,
+          "diagnostic_support": 4
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_parallel_tool_call_c99e1c2cdd31",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/parallel_tool_call_audio/parallel_tool_call_0001.wav"
+      ],
+      "domain": "transportation and home services",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_parallel_tool_call_c99e1c2cdd31",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/parallel_tool_call_audio/parallel_tool_call_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/parallel_tool_call_audio/parallel_tool_call_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    }
+  },
+  {
+    "id": "parallel_tool_call_0002",
+    "task_type": "parallel_tool_call",
+    "available_tools": [
+      {
+        "name": "vehicle_check_availability"
+      },
+      {
+        "name": "get_card_benefits"
+      }
+    ],
+    "transcript": "Uh, can you see if a vehicle is available for a trip from 12 River Road to 88 Market Street, and also pull the benefits for the platinum card?",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "vehicle_check_availability",
+          "arguments": {
+            "start_location": "12 River Road",
+            "end_location": "88 Market Street"
+          }
+        },
+        {
+          "tool": "get_card_benefits",
+          "arguments": {
+            "card_type": "platinum"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "filler",
+          "text": "Uh,",
+          "start_char": 0,
+          "end_char": 3
+        }
+      ],
+      "phenomenon_targets": [
+        "filler"
+      ],
+      "value_mentions": {
+        "0.start_location": "12 River Road",
+        "0.end_location": "88 Market Street",
+        "1.card_type": "platinum"
+      },
+      "normalization": {},
+      "call_pattern": "two independent read calls requested conjunctively",
+      "dependency_edges": [],
+      "independence_rationale": "Vehicle availability for a specified route is unrelated to credit card benefits. Neither tool supplies arguments or constraints for the other, so they can run in parallel and in any order.",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_parallel_tool_call_b968ece03753",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/parallel_tool_call_audio/parallel_tool_call_0002.wav"
+      ],
+      "domain": "transportation and personal finance",
+      "difficulty": null,
+      "disfluency_category": [
+        "FILLER"
+      ],
+      "title": null
+    },
+    "source_id": "syn_parallel_tool_call_b968ece03753",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/parallel_tool_call_audio/parallel_tool_call_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/parallel_tool_call_audio/parallel_tool_call_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 2
+    }
+  }
+]

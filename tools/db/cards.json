@@ -1,0 +1,14 @@
+{
+  "platinum": {
+    "benefits": [
+      "2% cashback",
+      "no foreign transaction fee",
+      "airport lounge access"
+    ]
+  },
+  "standard": {
+    "benefits": [
+      "1% cashback"
+    ]
+  }
+}

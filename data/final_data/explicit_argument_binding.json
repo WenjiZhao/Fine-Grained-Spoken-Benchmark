@@ -1,0 +1,97 @@
+[
+  {
+    "id": "explicit_argument_binding_0001",
+    "task_type": "explicit_argument_binding",
+    "available_tools": [
+      {
+        "name": "track_order"
+      }
+    ],
+    "transcript": "Like... uh, you know... well, i ordered something last week and... um, I haven't received it yet. Could you track it for me? The order ID is A-B-C-1-2-3.",
+    "gold": {
+      "action": "call",
+      "tool": "track_order",
+      "arguments": {
+        "order_id": "ABC123"
+      }
+    },
+    "annotations": {
+      "confusable_slots": [],
+      "binding_pairs": [
+        [
+          "order_id",
+          "ABC123"
+        ]
+      ],
+      "argument_value_alternatives": null
+    },
+    "original_information": {
+      "dataset": "fdb_v3",
+      "id": "ecommerce_01",
+      "path": "bench_data/fdb_v3_data_released-2/ecommerce_01_65e8cf8f4c7424fa062e54a3/metadata.json",
+      "audio_paths": [
+        "data/final_data/full_duplex/explicit_argument_binding_audio/explicit_argument_binding_0001.wav"
+      ],
+      "domain": "ecommerce_support",
+      "difficulty": "easy",
+      "disfluency_category": [],
+      "title": "Simple Order Tracking"
+    },
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/explicit_argument_binding_audio/explicit_argument_binding_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/explicit_argument_binding_audio/explicit_argument_binding_0001.wav"
+    ]
+  },
+  {
+    "id": "explicit_argument_binding_0002",
+    "task_type": "explicit_argument_binding",
+    "available_tools": [
+      {
+        "name": "search_products"
+      }
+    ],
+    "transcript": "Hmm... um... so i'm looking for a pair of wireless headphones... and I'd like... um, to keep it under 100 dollars if possible. What do you have?",
+    "gold": {
+      "action": "call",
+      "tool": "search_products",
+      "arguments": {
+        "query": "wireless headphones",
+        "max_price": 100
+      }
+    },
+    "annotations": {
+      "confusable_slots": [],
+      "binding_pairs": [
+        [
+          "query",
+          "wireless headphones"
+        ],
+        [
+          "max_price",
+          100
+        ]
+      ],
+      "argument_value_alternatives": null
+    },
+    "original_information": {
+      "dataset": "fdb_v3",
+      "id": "ecommerce_02",
+      "path": "bench_data/fdb_v3_data_released-2/ecommerce_02_5f4a4da1575d605c43bef871/metadata.json",
+      "audio_paths": [
+        "data/final_data/full_duplex/explicit_argument_binding_audio/explicit_argument_binding_0002.wav"
+      ],
+      "domain": "ecommerce_support",
+      "difficulty": "easy",
+      "disfluency_category": [],
+      "title": "Simple Product Search"
+    },
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/explicit_argument_binding_audio/explicit_argument_binding_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/explicit_argument_binding_audio/explicit_argument_binding_0002.wav"
+    ]
+  }
+]

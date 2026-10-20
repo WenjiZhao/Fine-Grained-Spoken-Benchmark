@@ -1,0 +1,18 @@
+# Step-Audio2-mini adapter (half-duplex, in-process transformers). Same base
+# StepAudio2 classes as models/voxmind (VoxMind is a fine-tune of this checkpoint
+# family), so the same dependency set applies. The upstream TTS/token2wav stack is
+# not used and intentionally excluded (see vendor/VENDORED_FROM.md).
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.8.0
+torchaudio==2.8.0
+transformers==4.49.0
+librosa==0.11.0
+numpy==2.1.2
+numba==0.62.1
+soundfile==0.13.1
+scipy==1.15.3
+safetensors==0.6.2
+tokenizers==0.21.4
+huggingface-hub==0.36.0
+accelerate==1.11.0

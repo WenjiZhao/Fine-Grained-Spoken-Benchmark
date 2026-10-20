@@ -1,0 +1,14 @@
+# Secrets
+.env
+
+# Environments, checkpoints, outputs
+.venvs/
+venvs/
+ckpt/
+results/
+logs/
+
+__pycache__/
+*.pyc
+.DS_Store
+.pytest_cache/

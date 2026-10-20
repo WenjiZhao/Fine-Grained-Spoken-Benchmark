@@ -1,0 +1,870 @@
+[
+  {
+    "name": "location_get_coordinates",
+    "description": "Convert a street address or place name into latitude/longitude coordinates. Returns {address, lat, lng}.",
+    "source": "VAB (seqdep_cluster)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Street address or place name to geocode, as stated by the user, e.g. '123 Main Street' or 'downtown office'."
+        }
+      },
+      "required": [
+        "address"
+      ]
+    }
+  },
+  {
+    "name": "add_to_cart",
+    "description": "Add a product to the user's online-store shopping cart. Use the product_id returned by search_products. Distinct from basket_add_item, which adds a vendor item to a local delivery basket. Returns {product_id, quantity, cart_total}.",
+    "source": "fdb_v3",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "Product to add: a product identifier from a search_products result, e.g. 'PROD-8841', or the product name the user said, e.g. 'wireless headphones'."
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Number of units to add (positive integer)."
+        }
+      },
+      "required": [
+        "product_id",
+        "quantity"
+      ]
+    }
+  },
+  {
+    "name": "book_flight",
+    "description": "Book a specific flight for a passenger. Requires a flight_id, typically from a prior search_flights call. Returns {booking_ref, flight_id, passenger}.",
+    "source": "fdb_v3 + VAB (flight.book)",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "passenger_name": {
+          "type": "string",
+          "description": "Full name of the passenger, e.g. 'Maya Patel'."
+        },
+        "flight_id": {
+          "type": "string",
+          "description": "Flight identifier, typically from a search_flights result, e.g. 'FL502'."
+        },
+        "destination": {
+          "type": "string",
+          "description": "Destination city of the flight, e.g. 'Denver'."
+        },
+        "date": {
+          "type": "string",
+          "description": "Departure date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        }
+      },
+      "required": [
+        "passenger_name",
+        "flight_id",
+        "destination",
+        "date"
+      ]
+    }
+  },
+  {
+    "name": "calculate_commute",
+    "description": "Estimate travel time and distance between two addresses for a given travel mode (e.g. commute from a home/apartment to work). Distinct from trip_estimate_cost, which prices a ride-hailing trip. Returns {duration_mins, distance_miles, mode}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "origin_address": {
+          "type": "string",
+          "description": "Starting address or place, e.g. '123 Main Street'."
+        },
+        "destination_address": {
+          "type": "string",
+          "description": "Destination address or place, e.g. 'downtown office'."
+        },
+        "mode": {
+          "type": "string",
+          "description": "Travel mode: 'driving', 'transit', 'train', 'walking', or 'biking'."
+        }
+      },
+      "required": [
+        "origin_address",
+        "destination_address",
+        "mode"
+      ]
+    }
+  },
+  {
+    "name": "get_card_benefits",
+    "description": "Look up the benefits (cashback, fees, perks) of a credit card tier. Returns {card_type, benefits}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "card_type": {
+          "type": "string",
+          "description": "Card tier name, e.g. 'platinum', 'standard', or 'travel'."
+        }
+      },
+      "required": [
+        "card_type"
+      ]
+    }
+  },
+  {
+    "name": "get_exchange_rate",
+    "description": "Get the exchange rate between two currencies and convert an amount. Returns {rate, converted_amount}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "description": "Amount of money to convert, in from_currency."
+        },
+        "from_currency": {
+          "type": "string",
+          "description": "ISO 4217 code of the source currency (the currency the user has), e.g. 'USD'."
+        },
+        "to_currency": {
+          "type": "string",
+          "description": "ISO 4217 code of the target currency (the currency the user wants), e.g. 'EUR'."
+        }
+      },
+      "required": [
+        "amount",
+        "from_currency",
+        "to_currency"
+      ]
+    }
+  },
+  {
+    "name": "modify_autopay",
+    "description": "Set up or change automatic payment for a bill, paying it from the given account. Returns {autopay_enabled, bill, source}.",
+    "source": "fdb_v3",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "bill_type": {
+          "type": "string",
+          "description": "Which bill to pay automatically, e.g. 'electric', 'internet', 'water', 'phone'."
+        },
+        "source_account": {
+          "type": "string",
+          "description": "Account the payment is drawn from, e.g. 'checking-primary' or 'savings-main'."
+        }
+      },
+      "required": [
+        "bill_type",
+        "source_account"
+      ]
+    }
+  },
+  {
+    "name": "search_apartments",
+    "description": "Search apartments for rent in a city. Rental only. Distinct from homes_2_find_home_by_area (homes for sale), hotels_2_search_house (vacation rentals) and hotels_4_search_hotel (hotel rooms). Returns {city, results: [{id, rent, bedrooms, pets_allowed, address}]}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "City or neighborhood to search in, e.g. 'Boston'."
+        },
+        "bedrooms": {
+          "type": "integer",
+          "description": "Number of bedrooms (0 for a studio)."
+        },
+        "max_price": {
+          "type": "integer",
+          "description": "Maximum monthly rent in US dollars."
+        },
+        "pets_allowed": {
+          "type": "boolean",
+          "description": "true if the apartment must allow pets, false if pets are not needed."
+        }
+      },
+      "required": [
+        "city",
+        "bedrooms",
+        "max_price",
+        "pets_allowed"
+      ]
+    }
+  },
+  {
+    "name": "search_flights",
+    "description": "Search available flights from an origin to a destination on a date. Returns {flights: [{flight_id, airline, price, depart, arrive}]}; pass a flight_id to book_flight to book.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "destination": {
+          "type": "string",
+          "description": "Arrival city, e.g. 'Denver'."
+        },
+        "date": {
+          "type": "string",
+          "description": "Departure date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "origin": {
+          "type": "string",
+          "description": "Departure city, e.g. 'Boston'."
+        }
+      },
+      "required": [
+        "destination",
+        "date",
+        "origin"
+      ]
+    }
+  },
+  {
+    "name": "search_products",
+    "description": "Search an online store's product catalog by keyword, under a price cap. Distinct from items_search, which searches local vendors' items in an area. Returns {products: [{product_id, name, price}]}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Product keywords, e.g. 'wireless headphones'."
+        },
+        "max_price": {
+          "type": "integer",
+          "description": "Maximum price per item in US dollars."
+        }
+      },
+      "required": [
+        "query",
+        "max_price"
+      ]
+    }
+  },
+  {
+    "name": "track_order",
+    "description": "Get the shipping status and estimated delivery date of an existing order. Returns {order_id, shipping_status, eta}.",
+    "source": "fdb_v3",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string",
+          "description": "Order identifier, written without spaces or dashes between spelled-out characters, e.g. 'ABC123'."
+        }
+      },
+      "required": [
+        "order_id"
+      ]
+    }
+  },
+  {
+    "name": "update_identity_doc",
+    "description": "Update the number on file for one of the user's identity documents. Returns {updated_doc, masked_number}.",
+    "source": "fdb_v3",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "doc_type": {
+          "type": "string",
+          "description": "Document type: 'passport' or 'driver's license'."
+        },
+        "doc_number": {
+          "type": "string",
+          "description": "The new document number, e.g. 'XJ482991'."
+        }
+      },
+      "required": [
+        "doc_type",
+        "doc_number"
+      ]
+    }
+  },
+  {
+    "name": "update_search_filter",
+    "description": "Set or change a filter on the user's saved search (e.g. a housing search), such as price range, bedrooms, area or sort order. Returns {filter_updated, new_value}.",
+    "source": "fdb_v3",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "filter_name": {
+          "type": "string",
+          "description": "Name of the filter to change, e.g. 'price_range', 'max_price', 'bedrooms', 'area', 'property_type', 'sort'."
+        },
+        "value": {
+          "type": "string",
+          "description": "New value for the filter, as a string, e.g. '1500-2000', 'Cambridge', 'price low to high'."
+        }
+      },
+      "required": [
+        "filter_name",
+        "value"
+      ]
+    }
+  },
+  {
+    "name": "items_search",
+    "description": "Search items sold by local vendors (restaurants, shops) in an area, e.g. food for delivery. Distinct from search_products, an online store catalog search. Returns {items: [{item_id, vendor, name, price}]}; feed these to basket_add_item.",
+    "source": "VAB (seqdep_cluster)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "type": "string",
+          "description": "Area or neighborhood to search in, e.g. 'downtown'."
+        },
+        "vendor": {
+          "type": "array",
+          "description": "Vendor name(s) to filter by. An empty list means no vendor filter (search every vendor in the area).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "product": {
+          "type": "array",
+          "description": "Product name(s) to search for, e.g. ['margherita pizza'].",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "area",
+        "vendor",
+        "product"
+      ]
+    }
+  },
+  {
+    "name": "basket_add_item",
+    "description": "Add an item from a local vendor to the user's delivery basket. Typically uses the vendor/item references from an items_search result. Distinct from add_to_cart (online store cart). Returns {added_count, total_quantity, total}.",
+    "source": "VAB (seqdep_cluster)",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "provider_ref": {
+          "type": "string",
+          "description": "Vendor/provider reference, typically items_search's vendor, e.g. \"Tony's Pizzeria\"."
+        },
+        "location_ref": {
+          "type": "string",
+          "description": "Delivery or pickup location reference, e.g. 'downtown'."
+        },
+        "product_ref": {
+          "type": "string",
+          "description": "Item to add: items_search's item_id, e.g. 'ITEM-701', or the item name the user said, e.g. 'Margherita Pizza'."
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of units to add (positive integer)."
+        }
+      },
+      "required": [
+        "provider_ref",
+        "location_ref",
+        "product_ref",
+        "count"
+      ]
+    }
+  },
+  {
+    "name": "trip_estimate_cost",
+    "description": "Estimate the price of a ride-hailing trip between two locations. Returns {pricing_id, estimate}; pass pricing_id to trip_confirm_booking to book the ride. Distinct from calculate_commute (travel time/distance) and vehicle_check_availability (whether a car is available).",
+    "source": "VAB (seqdep_cluster)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "start_location": {
+          "type": "string",
+          "description": "Pickup location, e.g. 'Boston Common'."
+        },
+        "end_location": {
+          "type": "string",
+          "description": "Drop-off location, e.g. 'South Station'."
+        }
+      },
+      "required": [
+        "start_location",
+        "end_location"
+      ]
+    }
+  },
+  {
+    "name": "vehicle_check_availability",
+    "description": "Check whether a ride-hailing vehicle is available for a trip between two locations and how soon it can arrive. Returns {available, eta_mins}.",
+    "source": "VAB (seqdep_cluster)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "start_location": {
+          "type": "string",
+          "description": "Pickup location, e.g. 'Boston Common'."
+        },
+        "end_location": {
+          "type": "string",
+          "description": "Drop-off location, e.g. 'South Station'."
+        }
+      },
+      "required": [
+        "start_location",
+        "end_location"
+      ]
+    }
+  },
+  {
+    "name": "trip_confirm_booking",
+    "description": "Confirm and book a ride-hailing trip using a price quote from trip_estimate_cost. Returns {confirmation_id, pricing_id}.",
+    "source": "VAB (seqdep_cluster)",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "pricing_id": {
+          "type": "string",
+          "description": "Price quote identifier returned by trip_estimate_cost, e.g. 'PRICING482'."
+        },
+        "pickup_location": {
+          "type": "string",
+          "description": "Pickup location, e.g. 'Boston Common'."
+        },
+        "drop_location": {
+          "type": "string",
+          "description": "Drop-off location, e.g. 'South Station'."
+        }
+      },
+      "required": [
+        "pricing_id",
+        "pickup_location",
+        "drop_location"
+      ]
+    }
+  },
+  {
+    "name": "get_weather",
+    "description": "Get the current weather for a location. Returns {location, condition, temp_f}.",
+    "source": "VAB + W2C (merged: Weather_1_GetWeather, get_current_weather)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City or place name, e.g. 'Seattle'."
+        }
+      },
+      "required": [
+        "location"
+      ]
+    }
+  },
+  {
+    "name": "get_stock_price",
+    "description": "Look up a stock's price. Identify the stock by company_name, the way users naturally say it aloud; symbol and exchange are optional refinements, not required to disambiguate. Returns {symbol, exchange, date, price}.",
+    "source": "VAB + W2C (merged: stock_price.get)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "description": "Optional ticker symbol, e.g. 'TSLA'."
+        },
+        "exchange": {
+          "type": "string",
+          "description": "Optional exchange the stock trades on, e.g. 'NASDAQ'."
+        },
+        "company_name": {
+          "type": "string",
+          "description": "Company name as the user says it, e.g. 'Tesla'."
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of the price. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        }
+      },
+      "required": [
+        "company_name",
+        "date"
+      ]
+    }
+  },
+  {
+    "name": "find_movies",
+    "description": "Find showtimes for a movie at theaters in a location on a date. Returns {results: [{title, theater, showtime}]}.",
+    "source": "W2C (merged: Movies_1_FindMovies, Movies_3_FindMovies)",
+    "type": "read",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Movie title, e.g. 'Dune: Part Two'."
+        },
+        "location": {
+          "type": "string",
+          "description": "City or area to find theaters in, e.g. 'Seattle'."
+        },
+        "date": {
+          "type": "string",
+          "description": "Date to watch. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        }
+      },
+      "required": [
+        "title",
+        "location",
+        "date"
+      ]
+    }
+  },
+  {
+    "name": "book_appointment",
+    "description": "Book an appointment with a service provider (doctor, dentist, salon, etc.) at a date and time. Distinct from restaurants_2_reserve_restaurant (restaurant tables). Returns {confirmation_id, provider_name, date, time}.",
+    "source": "W2C (merged: Services_1_BookAppointment, Services_4_BookAppointment)",
+    "type": "write",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "provider_name": {
+          "type": "string",
+          "description": "Name of the provider or business, e.g. 'Dr. Rivera' or 'Northside Dental'."
+        },
+        "date": {
+          "type": "string",
+          "description": "Appointment date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "time": {
+          "type": "string",
+          "description": "Appointment time, e.g. '10:30 AM' or '15:30'."
+        }
+      },
+      "required": [
+        "provider_name",
+        "date",
+        "time"
+      ]
+    }
+  },
+  {
+    "name": "find_provider",
+    "description": "Find service providers or professionals (dentist, plumber, electrician, etc.) in a location. Distinct from find_restaurants (places to eat). Returns {results: [{name, rating}]}.",
+    "source": "W2C (merged: Services_1_FindProvider, Services_4_FindProvider)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "service_type": {
+          "type": "string",
+          "description": "Kind of service or professional, e.g. 'dentist', 'plumber'."
+        },
+        "location": {
+          "type": "string",
+          "description": "City or area to search in, e.g. 'Cambridge'."
+        }
+      },
+      "required": [
+        "service_type",
+        "location"
+      ]
+    }
+  },
+  {
+    "name": "find_restaurants",
+    "description": "Find restaurants serving a cuisine in a location. Distinct from find_provider (service professionals). Returns {results: [{name, rating}]}.",
+    "source": "W2C (merged: Restaurants_2_FindRestaurants)",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "cuisine": {
+          "type": "string",
+          "description": "Cuisine or food type, e.g. 'Italian', 'sushi'."
+        },
+        "location": {
+          "type": "string",
+          "description": "City or area to search in, e.g. 'Seattle'."
+        }
+      },
+      "required": [
+        "cuisine",
+        "location"
+      ]
+    }
+  },
+  {
+    "name": "restaurants_2_reserve_restaurant",
+    "description": "Reserve a table at a restaurant for a party at a given time. Returns {confirmation_id, restaurant_name, time, party_size}.",
+    "source": "W2C",
+    "type": "write",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "restaurant_name": {
+          "type": "string",
+          "description": "Name of the restaurant, e.g. 'Marlowe Bistro'."
+        },
+        "time": {
+          "type": "string",
+          "description": "Reservation time, e.g. '7:30 PM' or '19:30'."
+        },
+        "party_size": {
+          "type": "integer",
+          "description": "Number of people in the party."
+        }
+      },
+      "required": [
+        "restaurant_name",
+        "time",
+        "party_size"
+      ]
+    }
+  },
+  {
+    "name": "events_3_find_events",
+    "description": "Find upcoming events (concerts, shows, festivals, etc.) of a category in a location. Returns {results: [{event_id, name, date}]}; pass event_id to events_3_buy_event_tickets to buy tickets.",
+    "source": "W2C",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City to search in, e.g. 'Austin'."
+        },
+        "category": {
+          "type": "string",
+          "description": "Event category, e.g. 'music', 'comedy', 'art'."
+        }
+      },
+      "required": [
+        "location",
+        "category"
+      ]
+    }
+  },
+  {
+    "name": "events_3_buy_event_tickets",
+    "description": "Buy tickets for a specific event. Requires an event_id, typically from events_3_find_events. Returns {confirmation_id, event_id, quantity}.",
+    "source": "W2C",
+    "type": "write",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "description": "Event identifier, typically from an events_3_find_events result, e.g. 'EVT-417'."
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Number of tickets to buy (positive integer)."
+        }
+      },
+      "required": [
+        "event_id",
+        "quantity"
+      ]
+    }
+  },
+  {
+    "name": "hotels_2_search_house",
+    "description": "Search whole-home vacation rentals (Airbnb/VRBO-style), booked for a guest count rather than a room type. Distinct from hotels_4_search_hotel, a traditional hotel-chain room search. Returns {results: [{listing_id, location, guests, nightly_rate}]}.",
+    "source": "W2C",
+    "type": "read",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City or area to stay in, e.g. 'Asheville'."
+        },
+        "check_in": {
+          "type": "string",
+          "description": "Check-in date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "check_out": {
+          "type": "string",
+          "description": "Check-out date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "guests": {
+          "type": "integer",
+          "description": "Number of guests staying."
+        }
+      },
+      "required": [
+        "location",
+        "check_in",
+        "check_out",
+        "guests"
+      ]
+    }
+  },
+  {
+    "name": "hotels_4_search_hotel",
+    "description": "Search traditional hotel-chain rooms, optionally filtered by star rating. Distinct from hotels_2_search_house, a whole-home vacation-rental search. Returns {results: [{hotel_id, location, star_rating, nightly_rate}]}.",
+    "source": "W2C",
+    "type": "read",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City or area to stay in, e.g. 'Chicago'."
+        },
+        "check_in": {
+          "type": "string",
+          "description": "Check-in date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "check_out": {
+          "type": "string",
+          "description": "Check-out date. Use the date exactly as the user said it, e.g. 'July 15' or 'October 12th'; if the date came from an earlier tool result (e.g. get_current_date), use that returned value as-is."
+        },
+        "star_rating": {
+          "type": "integer",
+          "description": "Optional hotel star rating, 1-5."
+        }
+      },
+      "required": [
+        "location",
+        "check_in",
+        "check_out"
+      ]
+    }
+  },
+  {
+    "name": "homes_2_find_home_by_area",
+    "description": "Search homes for sale (purchase, not rental) in an area. Distinct from search_apartments, which is rental-only. Returns {results: [{home_id, area, price, bedrooms, property_type}]}.",
+    "source": "W2C",
+    "type": "read",
+    "verified": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "type": "string",
+          "description": "City or neighborhood to search in, e.g. 'Brookline'."
+        },
+        "max_price": {
+          "type": "integer",
+          "description": "Maximum purchase price in US dollars, e.g. 850000."
+        },
+        "bedrooms": {
+          "type": "integer",
+          "description": "Optional minimum number of bedrooms."
+        },
+        "property_type": {
+          "type": "string",
+          "description": "Optional property type, e.g. 'condo', 'townhouse', 'single-family home'."
+        }
+      },
+      "required": [
+        "area",
+        "max_price"
+      ]
+    }
+  },
+  {
+    "name": "get_current_location",
+    "description": "Resolve the user's current physical location. Call this when the user references their location implicitly (e.g. 'near me', 'my current address') instead of naming a place. Returns {address, city, lat, lng}.",
+    "source": "synthetic",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get_current_date",
+    "description": "Resolve today's date. Call this when an implicit relative-date reference (e.g. 'today', 'this weekend', 'in three days') must be turned into an absolute date before another tool can be called. Returns {date} as an ISO 8601 date.",
+    "source": "synthetic",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "get_current_time",
+    "description": "Resolve the current wall-clock time. Call this when an implicit time reference (e.g. 'right now', 'in an hour', 'this evening') must be turned into an absolute time before another tool can be called. Returns {time, timezone}, time as HH:MM 24-hour.",
+    "source": "synthetic",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "Optional place whose local time is wanted; omit for the user's own current time."
+        },
+        "country": {
+          "type": "string",
+          "description": "Optional country of that place."
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "get_user_profile",
+    "description": "Resolve the user's saved profile. Call this when the user refers to something of theirs by implicit possessive reference (e.g. 'my usual card', 'my saved address', 'my name') instead of stating the value. Returns {full_name, default_card, saved_address, preferred_currency}.",
+    "source": "synthetic",
+    "type": "read",
+    "verified": true,
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+]

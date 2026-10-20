@@ -1,0 +1,301 @@
+[
+  {
+    "id": "tool_self_correction_0001",
+    "task_type": "tool_self_correction",
+    "available_tools": [
+      {
+        "name": "get_exchange_rate"
+      },
+      {
+        "name": "get_card_benefits"
+      }
+    ],
+    "transcript": "Tell me my card benefits—actually, I need the exchange rate for 250 dollars into euros.",
+    "gold": {
+      "action": "call",
+      "tool": "get_exchange_rate",
+      "arguments": {
+        "amount": 250,
+        "from_currency": "USD",
+        "to_currency": "EUR"
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "self_correction",
+          "text": "actually",
+          "start_char": 26,
+          "end_char": 34
+        }
+      ],
+      "phenomenon_targets": [
+        "self_correction"
+      ],
+      "value_mentions": {
+        "0.amount": "250",
+        "0.from_currency": "dollars",
+        "0.to_currency": "euros"
+      },
+      "normalization": {
+        "0.from_currency": "dollars -> USD",
+        "0.to_currency": "euros -> EUR"
+      },
+      "correction_level": "tool",
+      "initial_intent": "get_card_benefits",
+      "final_intent": "get_exchange_rate",
+      "obsolete_tool": "get_card_benefits",
+      "correction_spans": [
+        {
+          "type": "correction_trigger",
+          "text": "actually",
+          "start_char": 26,
+          "end_char": 34
+        }
+      ],
+      "false_start": false,
+      "distance_words": 0,
+      "distance_bucket": "short",
+      "intervening_span": "",
+      "correction_variant_group": "exchange_250_usd_eur_from_benefits",
+      "obsolete_value_mentions": {},
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": 5,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 5,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      },
+      "gold_complete_span": {
+        "text": "euros",
+        "start_char": 81,
+        "end_char": 86
+      },
+      "initial_complete_span": {
+        "text": "euros",
+        "start_char": 81,
+        "end_char": 86
+      },
+      "completeness": "short",
+      "completeness_evidence": []
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_tool_self_correction_e4b74148cf8c",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/tool_self_correction_audio/tool_self_correction_0001.wav"
+      ],
+      "domain": "finance",
+      "difficulty": null,
+      "disfluency_category": [
+        "SELF_CORRECTION"
+      ],
+      "title": null
+    },
+    "source_id": "syn_tool_self_correction_e4b74148cf8c",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/tool_self_correction_audio/tool_self_correction_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/tool_self_correction_audio/tool_self_correction_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 2
+    },
+    "correction_timing": {
+      "aligner": "torchaudio MMS_FA",
+      "audio": "data/final_data/half_duplex/tool_self_correction_audio/tool_self_correction_0001.wav",
+      "unit": "seconds",
+      "note": "Times are from audio start; identical for the full-duplex wav (speech + trailing silence).",
+      "original_intent": {
+        "text": "Tell me my card benefits",
+        "start_char": 0,
+        "end_char": 24,
+        "start": 0.06,
+        "end": 1.245,
+        "score": 0.997
+      },
+      "correction": {
+        "text": "actually",
+        "start_char": 25,
+        "end_char": 33,
+        "start": 1.466,
+        "end": 1.747,
+        "score": 0.998
+      },
+      "final_intent": {
+        "text": "I need the exchange rate for 250 dollars into euros",
+        "start_char": 35,
+        "end_char": 86,
+        "start": 2.189,
+        "end": 4.96,
+        "score": 0.792
+      }
+    }
+  },
+  {
+    "id": "tool_self_correction_0002",
+    "task_type": "tool_self_correction",
+    "available_tools": [
+      {
+        "name": "get_exchange_rate"
+      },
+      {
+        "name": "get_card_benefits"
+      }
+    ],
+    "transcript": "Tell me my card benefits, um, I was comparing a couple options for an upcoming purchase overseas and got sidetracked for a second, no wait, give me the exchange rate for 250 dollars to euros.",
+    "gold": {
+      "action": "call",
+      "tool": "get_exchange_rate",
+      "arguments": {
+        "amount": 250,
+        "from_currency": "USD",
+        "to_currency": "EUR"
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "filler",
+          "text": "um",
+          "start_char": 26,
+          "end_char": 28
+        },
+        {
+          "type": "self_correction",
+          "text": "no wait",
+          "start_char": 120,
+          "end_char": 127
+        }
+      ],
+      "phenomenon_targets": [
+        "self_correction"
+      ],
+      "value_mentions": {
+        "0.amount": "250",
+        "0.from_currency": "dollars",
+        "0.to_currency": "euros"
+      },
+      "normalization": {
+        "0.from_currency": "dollars -> USD",
+        "0.to_currency": "euros -> EUR"
+      },
+      "correction_level": "tool",
+      "initial_intent": "get_card_benefits",
+      "final_intent": "get_exchange_rate",
+      "obsolete_tool": "get_card_benefits",
+      "correction_spans": [
+        {
+          "type": "correction_trigger",
+          "text": "no wait",
+          "start_char": 120,
+          "end_char": 127
+        }
+      ],
+      "false_start": false,
+      "distance_words": 18,
+      "distance_bucket": "long",
+      "intervening_span": ", um, I was comparing a couple options for an upcoming purchase overseas and got sidetracked for a second, ",
+      "correction_variant_group": "exchange_250_usd_eur_from_benefits",
+      "obsolete_value_mentions": {},
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": 5,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 5,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      },
+      "gold_complete_span": {
+        "text": "euros",
+        "start_char": 185,
+        "end_char": 190
+      },
+      "initial_complete_span": {
+        "text": "euros",
+        "start_char": 185,
+        "end_char": 190
+      },
+      "completeness": "short",
+      "completeness_evidence": []
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_tool_self_correction_99d1321db563",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/tool_self_correction_audio/tool_self_correction_0002.wav"
+      ],
+      "domain": "finance",
+      "difficulty": null,
+      "disfluency_category": [
+        "FILLER",
+        "SELF_CORRECTION"
+      ],
+      "title": null
+    },
+    "source_id": "syn_tool_self_correction_99d1321db563",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/tool_self_correction_audio/tool_self_correction_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/tool_self_correction_audio/tool_self_correction_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 2
+    },
+    "correction_timing": {
+      "aligner": "torchaudio MMS_FA",
+      "audio": "data/final_data/half_duplex/tool_self_correction_audio/tool_self_correction_0002.wav",
+      "unit": "seconds",
+      "note": "Times are from audio start; identical for the full-duplex wav (speech + trailing silence).",
+      "original_intent": {
+        "text": "Tell me my card benefits",
+        "start_char": 0,
+        "end_char": 24,
+        "start": 0.12,
+        "end": 1.423,
+        "score": 0.986
+      },
+      "correction": {
+        "text": "no wait",
+        "start_char": 131,
+        "end_char": 138,
+        "start": 6.593,
+        "end": 6.953,
+        "score": 0.841
+      },
+      "final_intent": {
+        "text": "give me the exchange rate for 250 dollars to euros",
+        "start_char": 140,
+        "end_char": 190,
+        "start": 7.314,
+        "end": 10.3,
+        "score": 0.692
+      }
+    }
+  }
+]

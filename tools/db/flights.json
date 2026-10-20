@@ -1,0 +1,21 @@
+{
+  "search": {
+    "Boston|Denver|next Friday": [
+      {
+        "flight_id": "FL501",
+        "airline": "United",
+        "price": 214.0,
+        "depart": "08:10",
+        "arrive": "10:55"
+      },
+      {
+        "flight_id": "FL502",
+        "airline": "Delta",
+        "price": 189.0,
+        "depart": "13:40",
+        "arrive": "16:25"
+      }
+    ]
+  },
+  "bookings": {}
+}

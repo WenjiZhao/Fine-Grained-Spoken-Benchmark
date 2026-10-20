@@ -1,0 +1,212 @@
+[
+  {
+    "id": "sequential_tool_call_0001",
+    "task_type": "sequential_tool_call",
+    "available_tools": [
+      {
+        "name": "events_3_find_events"
+      },
+      {
+        "name": "events_3_buy_event_tickets"
+      }
+    ],
+    "transcript": "Find me a comedy event in Chicago and buy 2 tickets for the first event that comes back. Uhh, I'm keeping this simple, so whatever shows up first is fine as long as you use that event for the purchase.",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "events_3_find_events",
+          "arguments": {
+            "location": "Chicago",
+            "category": "comedy"
+          }
+        },
+        {
+          "tool": "events_3_buy_event_tickets",
+          "arguments": {
+            "event_id": "<result:0.results.0.event_id>",
+            "quantity": 2
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "filler",
+          "text": "Uhh,",
+          "start_char": 82,
+          "end_char": 86
+        }
+      ],
+      "phenomenon_targets": [
+        "sequential dependency",
+        "single filler"
+      ],
+      "value_mentions": {
+        "0.location": "Chicago",
+        "0.category": "comedy",
+        "1.quantity": "2 tickets"
+      },
+      "normalization": {
+        "1.quantity": "Interpret '2 tickets' as integer 2."
+      },
+      "call_pattern": "strong",
+      "dependency_edges": [
+        {
+          "from_call": 0,
+          "to_call": 1,
+          "from_path": "results.0.event_id",
+          "to_argument": "event_id"
+        }
+      ],
+      "result_bindings": {
+        "1.event_id": "<result:0.results.0.event_id>"
+      },
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_sequential_tool_call_99325edd3811",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/sequential_tool_call_audio/sequential_tool_call_0001.wav"
+      ],
+      "domain": "events",
+      "difficulty": null,
+      "disfluency_category": [
+        "FILLER"
+      ],
+      "title": null
+    },
+    "source_id": "syn_sequential_tool_call_99325edd3811",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/sequential_tool_call_audio/sequential_tool_call_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/sequential_tool_call_audio/sequential_tool_call_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 2
+    }
+  },
+  {
+    "id": "sequential_tool_call_0002",
+    "task_type": "sequential_tool_call",
+    "available_tools": [
+      {
+        "name": "events_3_find_events"
+      },
+      {
+        "name": "events_3_buy_event_tickets"
+      }
+    ],
+    "transcript": "Find comedy events in Austin and buy 3 tickets for the event you find that looks best.",
+    "gold": {
+      "action": "call_multiple",
+      "calls": [
+        {
+          "tool": "events_3_find_events",
+          "arguments": {
+            "location": "Austin",
+            "category": "comedy"
+          }
+        },
+        {
+          "tool": "events_3_buy_event_tickets",
+          "arguments": {
+            "event_id": "<result:0.results.0.event_id>",
+            "quantity": 3
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [],
+      "value_mentions": {
+        "0.location": "Austin",
+        "0.category": "comedy",
+        "1.quantity": "3"
+      },
+      "normalization": {
+        "1.quantity": "parse as integer 3"
+      },
+      "call_pattern": "strong_result_binding",
+      "dependency_edges": [
+        {
+          "from_call": 0,
+          "to_call": 1,
+          "type": "argument_binding",
+          "target_argument": "event_id"
+        }
+      ],
+      "result_bindings": [
+        {
+          "from_call": 0,
+          "result_path": "results.0.event_id",
+          "to_call": 1,
+          "argument": "event_id",
+          "value": "<result:0.results.0.event_id>"
+        }
+      ],
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_sequential_tool_call_62c964c8fbca",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/sequential_tool_call_audio/sequential_tool_call_0002.wav"
+      ],
+      "domain": "events",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_sequential_tool_call_62c964c8fbca",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/sequential_tool_call_audio/sequential_tool_call_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/sequential_tool_call_audio/sequential_tool_call_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 2
+    }
+  }
+]

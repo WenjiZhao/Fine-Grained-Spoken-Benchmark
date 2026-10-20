@@ -1,0 +1,14 @@
+{
+  "Boston": {
+    "condition": "Partly cloudy",
+    "temp_f": 71
+  },
+  "Denver": {
+    "condition": "Sunny",
+    "temp_f": 84
+  },
+  "Seattle": {
+    "condition": "Light rain",
+    "temp_f": 63
+  }
+}

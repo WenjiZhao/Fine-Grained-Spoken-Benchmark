@@ -1,0 +1,3 @@
+# Evaluation (evaluation/): the LLM judge calls OpenAI gpt-4o via $OPENAI_API_KEY.
+# run.sh installs this into every model's venv alongside models/<model>/requirements.txt.
+openai>=1.40

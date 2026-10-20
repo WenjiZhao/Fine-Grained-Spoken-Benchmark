@@ -1,0 +1,6 @@
+# A pure API client -- no local model weights, no torch. Talks to Google's Live API
+# via the official google-genai SDK, the same one already used by
+# Full-Duplex-Bench/v1_v1.5/model_inference/gemini/inference_gemini25_native.py.
+google-genai>=1.0.0
+numpy
+scipy

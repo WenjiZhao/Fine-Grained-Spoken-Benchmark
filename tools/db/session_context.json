@@ -1,0 +1,11 @@
+{
+  "current_location": {
+    "address": "123 Main Street",
+    "city": "Boston",
+    "lat": 42.3601,
+    "lng": -71.0589
+  },
+  "current_date": "2026-09-10",
+  "current_time": "14:30",
+  "timezone": "America/New_York"
+}

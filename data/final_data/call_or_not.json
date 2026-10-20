@@ -1,0 +1,166 @@
+[
+  {
+    "id": "call_or_not_0002",
+    "task_type": "call_or_not",
+    "available_tools": [
+      {
+        "name": "trip_confirm_booking"
+      },
+      {
+        "name": "trip_estimate_cost"
+      },
+      {
+        "name": "vehicle_check_availability"
+      },
+      {
+        "name": "location_get_coordinates"
+      }
+    ],
+    "transcript": "Please book the ride from 123 Main Street to downtown office... actually, no, I just need to know if that's even something you can book from here.",
+    "gold": {
+      "action": "no_call",
+      "tool": null,
+      "arguments": null
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "pause",
+          "text": "...",
+          "start_char": 56,
+          "end_char": 59
+        },
+        {
+          "type": "self_correction",
+          "text": "actually, no, I just need to know if that's even something you can book from here",
+          "start_char": 60,
+          "end_char": 132
+        }
+      ],
+      "phenomenon_targets": [
+        "pause",
+        "self_correction"
+      ],
+      "value_mentions": {},
+      "normalization": {},
+      "needs_tool_call": false,
+      "decision_reason": "The user retracts the booking request and ends with a general capability question, which should be answered conversationally without executing any tool.",
+      "expected_response_type": "direct_capability_answer",
+      "plausible_tool": "trip_confirm_booking",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": 5,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": 4,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_call_or_not_781af5be2533",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/call_or_not_audio/call_or_not_0002.wav"
+      ],
+      "domain": "ride_hailing",
+      "difficulty": null,
+      "disfluency_category": [
+        "PAUSE",
+        "SELF_CORRECTION"
+      ],
+      "title": null
+    },
+    "source_id": "syn_call_or_not_781af5be2533",
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    },
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/call_or_not_audio/call_or_not_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/call_or_not_audio/call_or_not_0002.wav"
+    ]
+  },
+  {
+    "id": "call_or_not_0009",
+    "task_type": "call_or_not",
+    "available_tools": [
+      {
+        "name": "events_3_buy_event_tickets"
+      }
+    ],
+    "transcript": "Please buy three tickets for event E-2049. I already have the event code, so this should be straightforward.",
+    "gold": {
+      "action": "call",
+      "tool": "events_3_buy_event_tickets",
+      "arguments": {
+        "event_id": "E-2049",
+        "quantity": 3
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [],
+      "phenomenon_targets": [],
+      "value_mentions": {
+        "0.event_id": "E-2049",
+        "0.quantity": "three"
+      },
+      "normalization": {
+        "0.quantity": "spoken number 'three' -> integer 3"
+      },
+      "needs_tool_call": true,
+      "decision_reason": "The user explicitly supplies both the event identifier and desired ticket quantity.",
+      "expected_response_type": "ticket_purchase_confirmation",
+      "plausible_tool": "events_3_buy_event_tickets",
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": null,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "overall_quality": 5,
+          "diagnostic_support": 4
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      }
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_call_or_not_8a3e0b1f7ea1",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/call_or_not_audio/call_or_not_0009.wav"
+      ],
+      "domain": "events",
+      "difficulty": null,
+      "disfluency_category": [],
+      "title": null
+    },
+    "source_id": "syn_call_or_not_8a3e0b1f7ea1",
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    },
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/call_or_not_audio/call_or_not_0009.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/call_or_not_audio/call_or_not_0009.wav"
+    ]
+  }
+]

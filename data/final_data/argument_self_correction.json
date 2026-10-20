@@ -1,0 +1,330 @@
+[
+  {
+    "id": "argument_self_correction_0001",
+    "task_type": "argument_self_correction",
+    "available_tools": [
+      {
+        "name": "events_3_buy_event_tickets"
+      }
+    ],
+    "transcript": "Please buy 3— sorry, 2 tickets for event E88421.",
+    "gold": {
+      "action": "call",
+      "tool": "events_3_buy_event_tickets",
+      "arguments": {
+        "event_id": "E88421",
+        "quantity": 2
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "self_correction",
+          "text": "3— sorry, 2",
+          "start_char": 12,
+          "end_char": 24
+        }
+      ],
+      "phenomenon_targets": [
+        "argument_self_correction"
+      ],
+      "value_mentions": {
+        "0.event_id": "E88421",
+        "0.quantity": "2"
+      },
+      "normalization": {
+        "0.quantity": "numeric word/digit normalization: '2' -> 2"
+      },
+      "correction_level": "single_argument",
+      "initial_intent": {
+        "tool": "events_3_buy_event_tickets",
+        "arguments": {
+          "event_id": "E88421",
+          "quantity": 3
+        }
+      },
+      "final_intent": {
+        "tool": "events_3_buy_event_tickets",
+        "arguments": {
+          "event_id": "E88421",
+          "quantity": 2
+        }
+      },
+      "corrected_arguments": [
+        "quantity"
+      ],
+      "correction_spans": [
+        {
+          "type": "obsolete_value",
+          "text": "3",
+          "start_char": 11,
+          "end_char": 12
+        },
+        {
+          "type": "trigger",
+          "text": "sorry",
+          "start_char": 14,
+          "end_char": 19
+        },
+        {
+          "type": "replacement",
+          "text": "2",
+          "start_char": 21,
+          "end_char": 22
+        }
+      ],
+      "distance_words": 0,
+      "distance_bucket": "short",
+      "intervening_span": "",
+      "correction_variant_group": "evt_buy_tickets_quantity_v1",
+      "initial_complete_span": {
+        "text": "2 tickets for event E88421",
+        "start_char": 21,
+        "end_char": 47
+      },
+      "gold_complete_span": {
+        "text": "2 tickets for event E88421",
+        "start_char": 21,
+        "end_char": 47
+      },
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": 5,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      },
+      "completeness": "short",
+      "completeness_evidence": []
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_argument_self_correction_35b2bc7c76db",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/argument_self_correction_audio/argument_self_correction_0001.wav"
+      ],
+      "domain": "events",
+      "difficulty": null,
+      "disfluency_category": [
+        "SELF_CORRECTION"
+      ],
+      "title": null
+    },
+    "source_id": "syn_argument_self_correction_35b2bc7c76db",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/argument_self_correction_audio/argument_self_correction_0001.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/argument_self_correction_audio/argument_self_correction_0001.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    },
+    "correction_timing": {
+      "aligner": "torchaudio MMS_FA",
+      "audio": "data/final_data/half_duplex/argument_self_correction_audio/argument_self_correction_0001.wav",
+      "unit": "seconds",
+      "note": "Times are from audio start; identical for the full-duplex wav (speech + trailing silence).",
+      "original_intent": {
+        "text": "3",
+        "start_char": 11,
+        "end_char": 12,
+        "start": 0.823,
+        "end": 1.124,
+        "score": 0.302
+      },
+      "correction": {
+        "text": "sorry",
+        "start_char": 14,
+        "end_char": 19,
+        "start": 1.486,
+        "end": 1.706,
+        "score": 0.995
+      },
+      "final_intent": {
+        "text": "2",
+        "start_char": 21,
+        "end_char": 22,
+        "start": 1.947,
+        "end": 2.148,
+        "score": 0.64
+      }
+    }
+  },
+  {
+    "id": "argument_self_correction_0002",
+    "task_type": "argument_self_correction",
+    "available_tools": [
+      {
+        "name": "events_3_buy_event_tickets"
+      }
+    ],
+    "transcript": "Can you buy 3, actually after thinking about who's still free and whether my cousin is driving in with the kids from out of town, make that 2 tickets for event E88421?",
+    "gold": {
+      "action": "call",
+      "tool": "events_3_buy_event_tickets",
+      "arguments": {
+        "event_id": "E88421",
+        "quantity": 2
+      }
+    },
+    "annotations": {
+      "speech_phenomena": [
+        {
+          "type": "self_correction",
+          "text": "3, actually after thinking about who's still free and whether my cousin is driving in with the kids from out of town, make that 2",
+          "start_char": 13,
+          "end_char": 138
+        }
+      ],
+      "phenomenon_targets": [
+        "argument_self_correction"
+      ],
+      "value_mentions": {
+        "0.event_id": "E88421",
+        "0.quantity": "2"
+      },
+      "normalization": {
+        "0.quantity": "numeric word/digit normalization: '2' -> 2"
+      },
+      "correction_level": "single_argument",
+      "initial_intent": {
+        "tool": "events_3_buy_event_tickets",
+        "arguments": {
+          "event_id": "E88421",
+          "quantity": 3
+        }
+      },
+      "final_intent": {
+        "tool": "events_3_buy_event_tickets",
+        "arguments": {
+          "event_id": "E88421",
+          "quantity": 2
+        }
+      },
+      "corrected_arguments": [
+        "quantity"
+      ],
+      "correction_spans": [
+        {
+          "type": "obsolete_value",
+          "text": "3",
+          "start_char": 12,
+          "end_char": 13
+        },
+        {
+          "type": "trigger",
+          "text": "make that",
+          "start_char": 130,
+          "end_char": 139
+        },
+        {
+          "type": "replacement",
+          "text": "2",
+          "start_char": 140,
+          "end_char": 141
+        }
+      ],
+      "distance_words": 22,
+      "distance_bucket": "long",
+      "intervening_span": "actually after thinking about who's still free and whether my cousin is driving in with the kids from out of town, ",
+      "correction_variant_group": "evt_buy_tickets_quantity_v1",
+      "initial_complete_span": {
+        "text": "2 tickets for event E88421",
+        "start_char": 140,
+        "end_char": 166
+      },
+      "gold_complete_span": {
+        "text": "2 tickets for event E88421",
+        "start_char": 140,
+        "end_char": 166
+      },
+      "quality_judge": {
+        "pass": true,
+        "scores": {
+          "natural_self_correction": 5,
+          "valid_false_start": null,
+          "no_information_leakage": 5,
+          "hard_negative_confusability": null,
+          "gold_correctness": 5,
+          "overall_quality": 5,
+          "diagnostic_support": 5
+        },
+        "fail_reasons": [],
+        "regeneration_instructions": []
+      },
+      "completeness": "short",
+      "completeness_evidence": []
+    },
+    "original_information": {
+      "dataset": "synthetic",
+      "id": "syn_argument_self_correction_52a67088d959",
+      "path": null,
+      "audio_paths": [
+        "data/final_data/full_duplex/argument_self_correction_audio/argument_self_correction_0002.wav"
+      ],
+      "domain": "events",
+      "difficulty": null,
+      "disfluency_category": [
+        "SELF_CORRECTION"
+      ],
+      "title": null
+    },
+    "source_id": "syn_argument_self_correction_52a67088d959",
+    "full_duplex_audio_paths": [
+      "data/final_data/full_duplex/argument_self_correction_audio/argument_self_correction_0002.wav"
+    ],
+    "half_duplex_audio_paths": [
+      "data/final_data/half_duplex/argument_self_correction_audio/argument_self_correction_0002.wav"
+    ],
+    "schema_version": "2.0",
+    "provenance": {
+      "dataset": "synthetic",
+      "generator_model": "gpt-5.4",
+      "judge_model": "gemini-3.6-flash",
+      "generation_attempt": 1
+    },
+    "correction_timing": {
+      "aligner": "torchaudio MMS_FA",
+      "audio": "data/final_data/half_duplex/argument_self_correction_audio/argument_self_correction_0002.wav",
+      "unit": "seconds",
+      "note": "Times are from audio start; identical for the full-duplex wav (speech + trailing silence).",
+      "original_intent": {
+        "text": "3",
+        "start_char": 12,
+        "end_char": 13,
+        "start": 0.641,
+        "end": 0.942,
+        "score": 0.681
+      },
+      "correction": {
+        "text": "make that",
+        "start_char": 130,
+        "end_char": 139,
+        "start": 6.373,
+        "end": 6.734,
+        "score": 0.998
+      },
+      "final_intent": {
+        "text": "2",
+        "start_char": 140,
+        "end_char": 141,
+        "start": 6.834,
+        "end": 7.014,
+        "score": 0.987
+      }
+    }
+  }
+]

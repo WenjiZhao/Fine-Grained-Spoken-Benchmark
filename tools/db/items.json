@@ -1,0 +1,12 @@
+{
+  "search": {
+    "pizza|downtown": [
+      {
+        "item_id": "ITEM-701",
+        "vendor": "Tony's Pizzeria",
+        "name": "Margherita Pizza",
+        "price": 14.5
+      }
+    ]
+  }
+}
